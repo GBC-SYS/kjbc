@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
+  basePath: "",
   webpack(config, { dev }) {
     if (dev) config.cache = { type: "memory" }; // PackFileCacheStrategy 우회
     config.module.rules.push(

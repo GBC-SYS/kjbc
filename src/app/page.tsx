@@ -1,1 +1,5 @@
-export { MainPage as default } from '@/stories/pages/main';
+import { MainPage } from "@/stories/pages/main";
+
+export default function Page() {
+  return <MainPage />;
+}

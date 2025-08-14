@@ -1,2 +1,2 @@
-export { default as RootLayout } from './Base';
-export { default as CommonTemplate } from './Base/template';
+export { default as BaseLayout } from "./Base";
+export { default as CommonTemplate } from "./Base/template";

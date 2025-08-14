@@ -27,11 +27,9 @@ const MainPage = ({}: Props) => {
   // if (photosLoading) return <div>로딩중...</div>;
 
   // if (photosError) return <div>Error: {photosError.message}</div>;
-
   return (
     <MainStyled>
       <p>SignOut</p>
-      {/* <SignOut width="45" height="60" />c */}
     </MainStyled>
   );
 };
