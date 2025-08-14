@@ -58,7 +58,7 @@ jobs:
 
       # ✅ 빌드 직전 .env.production 생성 (Environments → secrets 값 사용)
       - name: Create env file
-        run: echo "NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_HOST }}" >> .env.production
+        run: echo "NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }}" >> .env.production
 
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
