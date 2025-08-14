@@ -26,7 +26,7 @@ export default function Header({
     <HeaderStyled className={cx("Header")}>
       <div className="storybook-header">
         <div>
-          <h1>Acme</h1>
+          <h1>Acme1</h1>
         </div>
         <div>
           {user ? (
