@@ -29,7 +29,7 @@ const MainPage = ({}: Props) => {
   if (photosError) return <div>Error: {photosError.message}</div>;
   return (
     <MainStyled>
-      <p>SignOut</p>
+      <p>SignOut22 TEST</p>
       {photosData?.map((item) => {
         return <div key={item.id}>{item.title}</div>;
       })}
