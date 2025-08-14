@@ -56,9 +56,9 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
-      # ✅ 빌드 직전 .env.production 생성 (Environments → Variables 값 사용)
+      # ✅ 빌드 직전 .env.production 생성 (Environments → secrets 값 사용)
       - name: Create env file
-        run: echo "NEXT_PUBLIC_HOST=${{ vars.NEXT_PUBLIC_HOST }}" >> .env.production
+        run: echo "NEXT_PUBLIC_HOST=${{ secrets.NEXT_PUBLIC_HOST }}" >> .env.production
 
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
