@@ -3,10 +3,18 @@
  */
 import axios from "axios";
 
-const API_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "").replace(
-  /\/$/,
-  ""
-);
+const RAW =
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? process.env.NEXT_PUBLIC_HOST ?? "";
+const API_BASE_URL = RAW.replace(/\/+$/, ""); // 끝 슬래시 제거
+
+if (!/^https?:\/\//i.test(API_BASE_URL)) {
+  throw new Error(`API_BASE_URL invalid: "${RAW}"`); // 빌드/런타임 즉시 파악
+}
+
+const toAbs = (u: string) =>
+  /^https?:\/\//i.test(u)
+    ? u
+    : `${API_BASE_URL}${u.startsWith("/") ? "" : "/"}${u}`;
 
 export const customAxios = () => {
   const instance = axios.create({
@@ -19,11 +27,8 @@ export const customAxios = () => {
    */
   instance.interceptors.request.use(
     async (config) => {
-      // 절대 URL 강제 (상대경로 방지)
       const url = config.url ?? "";
-      if (!/^https?:\/\//i.test(url)) {
-        config.url = new URL(url, API_BASE_URL).toString();
-      }
+      config.url = toAbs(url); // new URL() 대신 안전한 문자열 결합
 
       if (config.headers) {
         config.headers["Content-type"] = "application/json; charset=UTF-8";
