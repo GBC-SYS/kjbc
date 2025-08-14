@@ -73,6 +73,10 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      # 환경변수 파일 생성 (여기에 추가)
+      - name: Create env file
+        run: |
+          echo "NEXT_PUBLIC_HOST=${{ steps.NEXT_PUBLIC_HOST }}" >> .env.production
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
