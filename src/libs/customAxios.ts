@@ -3,9 +3,15 @@
  */
 import axios from "axios";
 
+const API_BASE_URL = (
+  process.env.NEXT_PUBLIC_API_BASE_URL ??
+  process.env.NEXT_PUBLIC_HOST ??
+  ""
+).replace(/\/$/, "");
+
 export const customAxios = () => {
   const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    baseURL: API_BASE_URL,
     withCredentials: false,
   });
 
