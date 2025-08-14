@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out -b deploy",
     "pretty": "yarn prettier 'src/**/*.{ts,js,tsx,jsx}' --write",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
