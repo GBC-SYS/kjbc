@@ -63,10 +63,6 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
-      # ✅ 정적 내보내기 (output: "export" 사용하는 경우)
-      - name: Export static
-        run: ${{ steps.detect-package-manager.outputs.runner }} next export
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with: { path: ./out }
