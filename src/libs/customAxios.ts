@@ -20,6 +20,12 @@ export const customAxios = () => {
    */
   instance.interceptors.request.use(
     async (config) => {
+      // 절대 URL 강제 (상대경로 방지)
+      const url = config.url ?? "";
+      if (!/^https?:\/\//i.test(url)) {
+        config.url = new URL(url, API_BASE_URL).toString();
+      }
+
       if (config.headers) {
         config.headers["Content-type"] = "application/json; charset=UTF-8";
         config.headers["Accept"] = "application/json;";
