@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const customAxios = () => {
   const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_HOST,
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
     withCredentials: false,
   });
 
