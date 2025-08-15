@@ -9,13 +9,15 @@ import { PostsResponse } from "../types/posts";
 
 interface Props {}
 
+const isProd = process.env.NODE_ENV === "production";
+
 const MainPage = ({}: Props) => {
   const {
     data: photosData,
     isLoading: photosLoading,
     error: photosError,
   } = useQuery({
-    queryKey: ["sns"],
+    queryKey: [isProd ? "?action=read" : "sns"],
     queryFn: async ({ queryKey: [key] }) => {
       const response = await customAxios().get<PostsResponse>(key);
       return response.data;
