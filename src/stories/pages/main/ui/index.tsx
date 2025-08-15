@@ -29,7 +29,7 @@ const MainPage = ({}: Props) => {
 
   return (
     <MainStyled>
-      <p>SignOut22 TEST</p>
+      <p>SignOut33 TEST</p>
       {photosData?.records.map((item) => {
         return (
           <div key={item.id}>
