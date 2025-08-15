@@ -7,14 +7,14 @@ const RAW =
   process.env.NEXT_PUBLIC_API_BASE_URL ?? process.env.NEXT_PUBLIC_HOST ?? "";
 const API_BASE_URL = RAW.replace(/\/+$/, ""); // 끝 슬래시 제거
 
-if (!/^https?:\/\//i.test(API_BASE_URL)) {
-  throw new Error(`API_BASE_URL invalid: "${RAW}"`); // 빌드/런타임 즉시 파악
+// ✅ 절대 URL 또는 절대 경로('/api') 허용
+const isAbsUrl = /^https?:\/\//i.test(API_BASE_URL);
+const isAbsPath = API_BASE_URL.startsWith("/");
+if (!isAbsUrl && !isAbsPath) {
+  throw new Error(
+    `API_BASE_URL invalid: "${RAW}" (expect absolute URL or absolute path)`
+  );
 }
-
-const toAbs = (u: string) =>
-  /^https?:\/\//i.test(u)
-    ? u
-    : `${API_BASE_URL}${u.startsWith("/") ? "" : "/"}${u}`;
 
 export const customAxios = () => {
   const instance = axios.create({
@@ -28,7 +28,6 @@ export const customAxios = () => {
   instance.interceptors.request.use(
     async (config) => {
       const url = config.url ?? "";
-      config.url = toAbs(url); // new URL() 대신 안전한 문자열 결합
 
       if (config.headers) {
         config.headers["Content-type"] = "application/json; charset=UTF-8";
