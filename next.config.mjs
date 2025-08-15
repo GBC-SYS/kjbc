@@ -1,8 +1,11 @@
+const isProd = process.env.NODE_ENV === "production";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "/kjbc",
-  assetPrefix: "/kjbc",
+  basePath: isProd ? "/kjbc" : "",
+  assetPrefix: isProd ? "/kjbc" : "",
+  trailingSlash: true,
   images: {
     unoptimized: true,
     remotePatterns: [
