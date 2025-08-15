@@ -31,7 +31,7 @@ const MainPage = ({}: Props) => {
 
   return (
     <MainStyled>
-      <p>SignOut33 TEST</p>
+      <p>SignOut55 TEST</p>
       {photosData?.records.map((item) => {
         return (
           <div key={item.id}>
