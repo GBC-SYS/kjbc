@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "/repo",
-  assetPrefix: "/repo",
+  basePath: "/kjbc",
+  assetPrefix: "/kjbc",
   images: {
     unoptimized: true,
     remotePatterns: [
